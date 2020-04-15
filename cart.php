@@ -1,7 +1,6 @@
 <?php
     session_start();
-    $database_name = "ex_db";
-    $con = mysqli_connect("localhost","root","",$database_name);
+    $conn = mysqli_connect("localhost","id13014500_root","chaimaelmejgari","id13014500_ex_db");
 
     if (isset($_POST["add"])){
         if (isset($_SESSION["cart"])){
@@ -15,10 +14,10 @@
                     'item_quantity' => $_POST["quantity"],
                 );
                 $_SESSION["cart"][$count] = $item_array;
-                echo '<script>window.location="Cart.php"</script>';
+                echo '<script>window.location="cart.php"</script>';
             }else{
                 echo '<script>alert("Product is already Added to Cart")</script>';
-                echo '<script>window.location="Cart.php"</script>';
+                echo '<script>window.location="cart.php"</script>';
             }
         }else{
             $item_array = array(
@@ -37,7 +36,7 @@
                 if ($value["product_id"] == $_GET["id"]){
                     unset($_SESSION["cart"][$keys]);
                     echo '<script>alert("Product has been Removed...!")</script>';
-                    echo '<script>window.location="Cart.php"</script>';
+                    echo '<script>window.location="cart.php"</script>';
                 }
             }
         }
@@ -46,25 +45,69 @@
 
 
 
+
 <!doctype html>
-<html lang="en">
-
+<html>
 <head>
-    <title>Bijoux_FHE</title>
-    <!-- Required meta tags -->
-
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Shopping Cart</title>
-
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <title>Shopping Cart</title>
+        <style>
         @import url('https://fonts.googleapis.com/css?family=Titillium+Web');
 
+#p{
+zoom: 2;
+}
+        
+.social a{
+    font-size: 4em;
+    padding: 0.04rem;
+    background-color: #ffffff;
+}
+.fa-facebook{
+    color:#141516;
+}
+.fa-twitter{
+    color: #141516;
+}
+.fa-instagram{
+    color:  #141516;
+}
+.fa-youtube{
+    color:  #141516;
+}
+        .navbar{
+            
+            font-size: 1.75em;
+            
+        }
+        .navbar-brand{
+            
+            font-size: 1.75em;
+            
+        }
+        .form-control{
+            
+            font-size: 1em;
+            
+        }
+        .my-sm-0{
+            
+            font-size: 1em;
+            
+        }
+        
         *{
             font-family: 'Titillium Web', sans-serif;
         }
@@ -95,53 +138,59 @@
         }
     </style>
 </head>
-
 <body>
-    
-    <!---x----->
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-        <a class="navbar-brand" href="index.html">_FHE_</a>
+
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <a  class="navbar-brand" href="index.php">_FHE_</a>
         <ul class="navbar-nav mr-auto">
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true"
+                <a  class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true"
                     aria-expanded="false" role="button">FEMME</a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="BIJOUX_FEMME.html">les bagues</a>
-                    <a class="dropdown-item" href="braceletF.html">les bracelets</a>
-                    <a class="dropdown-item" href="colliersF.html">les colliers</a>
-                    <a class="dropdown-item" href="boucles_oreillesF.html">les boucles d’oreilles</a>
+                    <a class="dropdown-item" href="BIJOUX_FEMME.php">les bagues</a>
+                    <a class="dropdown-item" href="braceletF.php">les bracelets</a>
+                    <a class="dropdown-item" href="colliersF.php">les colliers</a>
+                    <a class="dropdown-item" href="boucles_oreillesF.php">les boucles d’oreilles</a>
                 </div>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true"
                     aria-expanded="false" role="button">HOMME</a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="BIJOUX_HOMME.html">les bagues</a>
-                    <a class="dropdown-item" href="braceletH.html">les bracelets</a>
-                    <a class="dropdown-item" href="colliersH.html">les colliers</a>
-                    <a class="dropdown-item" href="montresH.html">les montres</a>
-                    <a class="dropdown-item" href="bouttons.html">les bouttons de manchette</a>
+                    <a class="dropdown-item" href="BIJOUX_HOMME.php">les bagues</a>
+                    <a class="dropdown-item" href="braceletH.php">les bracelets</a>
+                    <a class="dropdown-item" href="colliersH.php">les colliers</a>
+                    <a class="dropdown-item" href="montresH.php">les montres</a>
+                    <a class="dropdown-item" href="bouttons.php">les bouttons de manchette</a>
 
                 </div>
             </li>
+
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true"
                     aria-expanded="false" role="button">ENFANT</a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="BIJOUX_ENFANTS.html">les bagues</a>
-                    <a class="dropdown-item" href="braceletE.html">les bracelets</a>
-                    <a class="dropdown-item" href="colliersE.html">les colliers</a>
-                    <a class="dropdown-item" href="boucles_oreillesE.html">les boucles d’oreilles</a>
+                    <a class="dropdown-item" href="BIJOUX_ENFANTS.php">les bagues</a>
+                    <a class="dropdown-item" href="braceletE.php">les bracelets</a>
+                    <a class="dropdown-item" href="colliersE.php">les colliers</a>
+                    <a class="dropdown-item" href="boucles_oreillesE.php">les boucles d’oreilles</a>
                 </div>
             </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link " href="Connect.html" role="button">Connect</a>
+
+
+            <li  class="nav-item dropdown">
+                <a class="nav-link " href="Connect.php" role="button">Connect</a>
 
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link " href="login.html" role="button">login</a>
+                <a class="nav-link " href="login.php" role="button">login</a>
 
             </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link " href="hello_panier.php" role="button">panier</a>
+
+            </li>
+
         </ul>
         <form class="form-inline">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -149,24 +198,22 @@
         </form>
     </nav>
 
-
-
-    <div class="container" style="width: 65%">
+   <div class="jumbotron" >
+    <div class="container" >
         <h2>Shopping Cart</h2>
         <?php
             $query = "SELECT * FROM product ORDER BY id ASC ";
-            $result = mysqli_query($con,$query);
+            $result = mysqli_query($conn,$query);
             if(mysqli_num_rows($result) > 0) {
 
                 while ($row = mysqli_fetch_array($result)) {
 
                     ?>
-        <div class="col-md-3">
+                    <div class="col-md-3">
 
-            <form method="post" action="Cart.php?action=add&id=<?php echo $row["id"]; ?>">
+                        <form method="post" action="cart.php?action=add&id=<?php echo $row["id"]; ?>">
 
-
-            <div class="product">
+                            <div class="product">
                                 <img src="<?php echo $row["image"]; ?>" class="img-responsive">
                                 <h5 class="text-info"><?php echo $row["pname"]; ?></h5>
                                 <h5 class="text-danger"><?php echo $row["price"]; ?></h5>
@@ -174,12 +221,11 @@
                                 <input type="hidden" name="hidden_name" value="<?php echo $row["pname"]; ?>">
                                 <input type="hidden" name="hidden_price" value="<?php echo $row["price"]; ?>">
                                 <input type="submit" name="add" style="margin-top: 5px;" class="btn btn-success"
-                                       value="Add to Cart">
+                                       value="acheter">
                             </div>
-
-            </form>
-        </div>
-        <?php
+                        </form>
+                    </div>
+                    <?php
                 }
             }
         ?>
@@ -188,44 +234,44 @@
         <h3 class="title2">Shopping Cart Details</h3>
         <div class="table-responsive">
             <table class="table table-bordered">
-                <tr>
-                    <th width="30%">Product Name</th>
-                    <th width="10%">Quantity</th>
-                    <th width="13%">Price Details</th>
-                    <th width="10%">Total Price</th>
-                    <th width="17%">Remove Item</th>
-                </tr>
+            <tr>
+                <th width="30%">Product Name</th>
+                <th width="10%">Quantity</th>
+                <th width="13%">Price Details</th>
+                <th width="10%">Total Price</th>
+                <th width="17%">Remove Item</th>
+            </tr>
 
-                <?php
+            <?php
                 if(!empty($_SESSION["cart"])){
                     $total = 0;
                     foreach ($_SESSION["cart"] as $key => $value) {
                         ?>
-                <tr>
-                    <td><?php echo $value["item_name"]; ?></td>
-                    <td><?php echo $value["item_quantity"]; ?></td>
-                    <td>$ <?php echo $value["product_price"]; ?></td>
-                    <td>
-                        $ <?php echo number_format($value["item_quantity"] * $value["product_price"], 2); ?></td>
-                    <td><a href="Cart.php?action=delete&id=<?php echo $value["product_id"]; ?>"><span
-                                class="text-danger">Remove Item</span></a></td>
+                        <tr>
+                            <td><?php echo $value["item_name"]; ?></td>
+                            <td><?php echo $value["item_quantity"]; ?></td>
+                            <td>$ <?php echo $value["product_price"]; ?></td>
+                            <td>
+                                $ <?php echo number_format($value["item_quantity"] * $value["product_price"], 2); ?></td>
+                            <td><a href="cart.php?action=delete&id=<?php echo $value["product_id"]; ?>"><span
+                                        class="text-danger">Remove Item</span></a></td>
 
-                </tr>
-                <?php
+                        </tr>
+                        <?php
                         $total = $total + ($value["item_quantity"] * $value["product_price"]);
                     }
                         ?>
-                <tr>
-                    <td colspan="3" align="right">Total</td>
-                    <th align="right">$ <?php echo number_format($total, 2); ?></th>
-                    <td></td>
-                </tr>
-                <?php
+                        <tr>
+                            <td colspan="3" align="right">Total</td>
+                            <th align="right">$ <?php echo number_format($total, 2); ?></th>
+                            <td></td>
+                        </tr>
+                        <?php
                     }
                 ?>
             </table>
         </div>
-
+    </div>
     </div>
     <div class="container-fluid padding">
         <div class="row text-center padding">
@@ -258,5 +304,4 @@
 
 
 </body>
-
 </html>
